@@ -1,0 +1,35 @@
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+}
+.navigation{
+    display: flex;
+}
+nav ul{
+    display: flex;
+}
+nav li{
+    list-style: none;
+}
+h1{
+    font-size: 1em;
+}
+.shop-container{
+    display:flex;
+    width:100%;
+    flex-wrap: wrap;
+}
+.product{
+    width: 300px;
+    background-color: azure;
+}
+
+.product img{
+    width: 100%;
+}
