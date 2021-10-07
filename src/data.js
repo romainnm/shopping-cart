@@ -1,7 +1,7 @@
 const pies = [
     {
         id: 1,
-        name: 'cherry Pie',
+        name: 'Cherry Pie',
         price: 11,
         img: './images/cherry.jpeg'
     },
