@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import items from './data'
 import Header from './Header'
 import Shop from './Shop'
@@ -8,24 +8,43 @@ import './App.css';
 function App() {
   const [products, setProducts] = useState(items);
   const [cart, setCart] = useState([]);
+  const [pieQty, setPieQty] = useState(1);
+  const [update, setUpdate] = useState(0)
 
   const addToCart = (id, name, price, img, pieQty) => {
     setCart([...cart, {id, name, price, img, pieQty }])
-    console.log(cart)
   }
+  const handleQty = (e) => {
+    setPieQty(e.target.value)
+  }
+
+  useEffect(()=>{
+  }, [update])
 
   return (
     <div className="main-container">
       <Header cart={cart} />
-      <Shop products={products} addToCart={addToCart} />
+      <Shop 
+        products={products} 
+        pieQty={pieQty}
+        addToCart={addToCart} 
+        handleQty={handleQty}
+      />
       <div className="checkout-overlay">
         <h3>Shopping Cart</h3>
         {cart.map((item)=>{
           return(
-            <div className="checkout-product">
+            <div key={item.id} className="checkout-product">
               <p>{item.name} (${item.price}) x{item.pieQty}</p>
               <div className="adjust-qty">
-                <button>+</button><button>-</button>
+                <button onClick={()=> {
+                  item.pieQty = item.pieQty + 1
+                  setUpdate(item.pieQty)
+                }}>+</button>
+                <button onClick={()=> {
+                  item.pieQty = item.pieQty -1
+                  setUpdate(item.pieQty)
+                }}>-</button>
               </div>
             </div>
           )
