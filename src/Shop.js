@@ -1,38 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import items from './data'
+import Header from './Header'
+import ProductList from './ProductList'
 
-const Shop = ({products, addToCart, pieQty, handleQty}) => {
-    const quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const Shop = () => {
+    const [products, setProducts] = useState(items);
+    const [cart, setCart] = useState([]);
+    const [pieQty, setPieQty] = useState(1);
+    const [update, setUpdate] = useState(0)
+    
+    const addToCart = (id, name, price, img, pieQty) => {
+        setCart([...cart, {id, name, price, img, pieQty }])
+      }
+
+      const handleQty = (e) => {
+        setPieQty(e.target.value)
+      }
+    
+  useEffect(()=>{
+}, [update])
+
 
     return(
-        <section className="shop-container">
-            {products.map((product) => {
-                const {id, name, price, img} = product;
+        <div>
+            <Header cart={cart} />
+            <ProductList 
+                products={products} 
+                pieQty={pieQty}
+                addToCart={addToCart} 
+                handleQty={handleQty}
+            />
+            <div className="checkout-overlay">
+                <h3>Shopping Cart</h3>
+                {cart.map((item)=>{
                 return(
-                    <article key={id} className="product-card">
-                        <div className="images-container">
-                            <img src={img} alt="pie"/>
-                        </div>
-                        <div className="product-card__header">
-                            <h4 className="product-card__name">{name}</h4>
-                            <p className="product-card__price">${price}</p>
-                        </div>
-                        
-                        <form>
-                            <label for="quantity">Qty:</label>
-                            <select id="quantity" name="quantity" onChange={(e)=>handleQty(e)}>
-                                {quantity.map(qty =>{
-                                    return(
-                                        <option value={qty}>{qty}</option>
-                                    )
-                                })}
-                            </select>
-                        </form>
-                        <button onClick={()=>addToCart(id, name, price, img, parseInt(pieQty))}>Add to cart</button>
-                    </article>
-            )
-            })} 
-        </section>
+                    <div key={item.id} className="checkout-product">
+                    <p>{item.name} (${item.price}) x{item.pieQty}</p>
+                    <div className="adjust-qty">
+                        <button onClick={()=> {
+                        item.pieQty = item.pieQty + 1
+                        setUpdate(item.pieQty)
+                        }}>+</button>
+                        <button onClick={()=> {
+                        item.pieQty = item.pieQty -1
+                        setUpdate(item.pieQty)
+                        }}>-</button>
+                    </div>
+                    </div>
+                )
+                })}
+                <p>Total: ${cart.reduce((a, v)=> a = a + (v.price*v.pieQty), 0)}</p>
+            </div>
+        </div>
     )
+    
 }
 
 export default Shop;

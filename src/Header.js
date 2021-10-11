@@ -5,8 +5,8 @@ const Header = ({cart}) => {
             <h1>Happy pie</h1>
             <nav>
                 <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="./shop">Shop</a></li>
                 </ul>
             </nav>
             </div>
