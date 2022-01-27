@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
-
-import Header from './Header'
-import ProductList from './ProductList'
-import Shop from './Shop'
-import './App.css';
-
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import Shop from "./pages/Shop";
 
 function App() {
-  
-  const [cart, setCart] = useState([]);
-
   return (
-    <div className="main-container">
-      <Header cart={cart} />
-      <div className="home-page-content">
-        <h1>Hey! This is the home page</h1>
-      </div>
-
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/shop">
+          <Shop />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
