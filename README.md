@@ -6,7 +6,7 @@ This project is part of the JavaScript Course made by [The Odin Project](www.the
 
 <img src="https://image.flaticon.com/icons/png/512/136/136528.png" width="25"><img src="https://image.flaticon.com/icons/png/512/136/136527.png" width="25"><img src="https://cdn-icons-png.flaticon.com/512/919/919851.png" width="25">
 
-**Live demo:** [Click here to see the demo](https://romainnm.github.io/memory-game) :heart:
+**Live demo:** [Click here to see the demo](https://romainnm.github.io/shopping-cart) :heart:
 
 ## Assignment
 
@@ -22,6 +22,7 @@ This project is part of the JavaScript Course made by [The Odin Project](www.the
 - Once a user has submitted their order, the amount on the cart itself should adjust
 
 ## Learning outcomes from this project
+
 - Learn how to use react-router-dom to navigate in the app
 - Learn how to use useContext to share the states to the whole app instead of prop drilling
 
